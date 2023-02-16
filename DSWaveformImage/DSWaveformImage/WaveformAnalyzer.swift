@@ -26,6 +26,9 @@ public class WaveformAnalyzer {
     private let assetReader: AVAssetReader
     private let audioAssetTrack: AVAssetTrack
 
+    /// Duration of `audioAssetURL`.
+    public let audioAssetURLDuration: Double?
+
     public init?(audioAssetURL: URL) {
         let audioAsset = AVURLAsset(url: audioAssetURL, options: [AVURLAssetPreferPreciseDurationAndTimingKey: true])
 
@@ -38,6 +41,8 @@ public class WaveformAnalyzer {
 
         self.assetReader = assetReader
         self.audioAssetTrack = assetTrack
+        let durationInSeconds = CMTimeGetSeconds(audioAsset.duration)
+        self.audioAssetURLDuration = durationInSeconds.isFinite ? durationInSeconds : nil
     }
 
 #if compiler(>=5.5) && canImport(_Concurrency)
