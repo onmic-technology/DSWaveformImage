@@ -2,7 +2,7 @@ import Foundation
 import AVFoundation
 import UIKit
 
-public class WaveformImageView: UIImageView {
+open class WaveformImageView: UIImageView {
     private let waveformImageDrawer: WaveformImageDrawer
     private var waveformAnalyzer: WaveformAnalyzer?
 

@@ -48,8 +48,12 @@ public class WaveformImageDrawer {
     /// Renders a UIImage of the provided waveform samples.
     ///
     /// Samples need to be normalized within interval `(0...1)`.
-    public func waveformImage(from samples: [Float], with configuration: Waveform.Configuration) -> UIImage? {
-        guard samples.count > 0, samples.count == Int(configuration.size.width * configuration.scale) else {
+    public func waveformImage(
+        from samples: [Float],
+        with configuration: Waveform.Configuration,
+        byPassCondition: Bool = false
+    ) -> UIImage? {
+        guard samples.count > 0, samples.count == Int(configuration.size.width * configuration.scale) || byPassCondition else {
             print("ERROR: samples: \(samples.count) != \(configuration.size.width) * \(configuration.scale)")
             return nil
         }
